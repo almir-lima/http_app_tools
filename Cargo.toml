@@ -1,0 +1,13 @@
+[package]
+name = "http_app_tools"
+version = "0.1.0"
+authors = ["Almir Lima"]
+
+description = "Simple Rust lib to decode and encode Http Protocol"
+repository = "https://github.com/isoft-sistemas/http_app_tools.git"
+keywords = ["http", "request", "response", "url"]
+license = "Apache-2.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
