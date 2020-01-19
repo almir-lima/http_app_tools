@@ -1,5 +1,5 @@
 
-pub struct Foo{};
+pub struct Foo{}
 
 /*
 Request: POST /teste HTTP/1.0
