@@ -1,6 +1,5 @@
 
-pub mod request::HttpRequest;
-pub mod response;
+pub struct Foo{};
 
 /*
 Request: POST /teste HTTP/1.0
