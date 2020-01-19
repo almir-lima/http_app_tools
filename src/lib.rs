@@ -10,7 +10,7 @@
 ///--------------------------------------------------------------------------------------------
 
 #[derive(Debug)]
-pub struct Http_Request {
+pub struct HttpRequest {
     pub verb: String,
     pub app: String,
     pub res: String,
@@ -19,9 +19,9 @@ pub struct Http_Request {
     pub data: String,
 }
 
-impl Http_Request {
+impl HttpRequest {
   
-  pub fn new( req_http: &str ) -> Option<Http_Request>{
+  pub fn new( req_http: &str ) -> Option<HttpRequest>{
         
      let mut e_data = req_http.split("\r\n\r\n"); // Split Data and Head of Http request
      let head = e_data.next()?;
@@ -45,7 +45,7 @@ impl Http_Request {
         
      // return Some if ok or None case have a error
      Some( 
-          Http_Request{
+          HttpRequest{
                         verb: verb.to_string(),
                         app: app.to_string(),
                         res: res.to_string(),
@@ -64,17 +64,17 @@ impl Http_Request {
 use std::collections::HashMap;
 
 #[derive(Debug, Clone)]
-pub struct Http_Response{
+pub struct HttpResponse{
     pub head : HashMap<String, String>,
     body : String,
     pub status : i8,
 }
 
-impl Http_Response{
+impl HttpResponse{
 
-  pub fn new() -> Http_Response {
+  pub fn new() -> HttpResponse {
        
-     Http_Response {
+     HttpResponse {
                     head : HashMap::new(),
                     body : String::new(),
                     status : 0,
