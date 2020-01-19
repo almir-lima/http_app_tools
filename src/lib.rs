@@ -65,7 +65,6 @@ use std::collections::HashMap;
 
 #[derive(Debug, Clone)]
 pub struct Http_Response{
-  
   pub head : HashMap<String, String>,
   body : String,
   pub status : i8,
@@ -75,11 +74,11 @@ impl Http_Response{
 
   pub fn new() -> Http_Response {
        
-    Http_Response {
-                    head : HashMap::new(),
-  	                body : String::new(),
-  	                status : 0,
-    }
+     Http_Response {
+     				head : HashMap::new(),
+  	 				body : String::new(),
+  	 				status : 0,
+     }
   }
   
   // Write message-body HTTP	
