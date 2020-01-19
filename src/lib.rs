@@ -75,9 +75,9 @@ impl Http_Response{
   pub fn new() -> Http_Response {
        
      Http_Response {
-                     head : HashMap::new(),
-  	                 body : String::new(),
-  	                 status : 0,
+                    head : HashMap::new(),
+                    body : String::new(),
+                    status : 0,
      }
   }
   
