@@ -5,7 +5,6 @@
 //-- Decodifica a requisição HTTP 1.1, e devolve a Struct Request  --
 //-- ----------------------------------------------------------------
 
-pub mod http_app_tools{
 ///--------------------------------------------------------------------------------------------
 ///----  Decode HTTP REQUEST and converte in Http_Request Struct
 ///--------------------------------------------------------------------------------------------
@@ -135,5 +134,4 @@ mod tests {
     fn test_hello() {
         assert_eq!(hello(), "Hello, world!");
     }
-}
 }
