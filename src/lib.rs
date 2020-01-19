@@ -1,26 +1,103 @@
+//-- ----------------------------------------------------------------
+//-- Author : Almir Lima  / iSoft Sistemas                         --
+//-- Date: 19 jan 2019                                             --
+//-- Decode the request HTTP 1.1, and result a Struct Request      --
+//-- Decodifica a requisição HTTP 1.1, e devolve a Struct Request  --
+//-- ----------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+//----  Decode HTTP REQUEST and converte in Http_Request Struct
+//--------------------------------------------------------------------------------------------
+
+#[derive(Debug)]
+pub struct Http_Request {
+    pub verb: String,
+    pub app: String,
+    pub res: String,
+    pub method: String,
+    pub qry: Vec<String>,
+    pub data: String,
+}
+
+impl Http_Request {
+  
+  pub fn new( req_http: &str ) -> Option<Http_Request>{
+        
+     let mut e_data = req_http.split("\r\n\r\n"); // Split Data and Head of Http request
+     let head = e_data.next()?;
+     let data = e_data.next()?;
+
+     let mut parts = head.split(" "); // Split verb and uri 
+     let verb = parts.next()?;
+     let uri = parts.next()?;
+
+     let mut parts = uri.split("?"); // Split query of uri
+     let path = parts.next()?;
+     let query = parts.next()?;
+
+     let mut parts = path.split("/"); // split path of uri 
+     let _ = parts.next()?;
+     let app = parts.next()?; // Aplication
+     let res = parts.next()?; // Resource
+     let method = parts.next()?; // method 
+      
+     let qry = query.split("&").map( str::to_string ).collect(); // create a array of query
+        
+     // return Some if ok or None case have a error
+     Some( 
+          Http_Request{
+                        verb: verb.to_string(),
+                        app: app.to_string(),
+                        res: res.to_string(),
+                        method: method.to_string(),
+                        qry,
+                        data: data.to_string(),
+          }
+     )
+  }
+}
+
+//--------------------------------------------------------------------------------------------
+//----  HTTP REQUEST and converte in Http_Request Struct
+//--------------------------------------------------------------------------------------------
+
 use std::collections::HashMap;
 
-//-- ----------------------
-//-- Protocol HTTP 1.1   --
-//-- ----------------------
-
 #[derive(Debug, Clone)]
-pub struct Http{
+pub struct Http_Response{
   
   pub head : HashMap<String, String>,
   body : String,
-  pub status : i32,
+  pub status : i8,
 }
 
-impl Http{
+impl Http_Response{
 
-  pub fn new() -> Http {
+  pub fn new() -> Http_Response {
        
-    Http {
-           head : HashMap::new(),
-  	       body : String::new(),
-  	       status : 0,
+    Http_Response {
+                    head : HashMap::new(),
+  	                body : String::new(),
+  	                status : 0,
     }
+  }
+  
+  // Write message-body HTTP	
+  pub fn write_body( &mut self, _str : String ){
+  	
+  	&self.body.push_str( &_str );
+
+  }
+  
+  // Get response to send	
+  pub fn data( &mut self ) -> String {
+
+    let mut _data = format!( "{}\r\n\r\n{}", &self.get_head() , &self.body );
+
+  	println!(" este ? o data {}", &_data );
+  	  	
+  	format!( "{}", _data )
+  	
   }
   
   // convert head hashmap to string
@@ -35,39 +112,6 @@ impl Http{
     }
     
     temp  
-  }
-  
-  // Write message-body HTTP	
-  pub fn write_body( &mut self, _str : String ){
-  	
-  	&self.body.push_str( &_str );
-
-  }
-  
-  // Get complete protocol from response	
-  pub fn data( &mut self ) -> String {
-  	
-    let mut sucess = String::new();
-    let mut res_code = String::new();
-
-    match self.status {
-    	200 => {
-    	         sucess = "true".to_string();
-    	         res_code = "200 OK".to_string();
-    	       },
-    	         
-          _ => {
-                 sucess = "false".to_string();
-                 res_code = "200 OK".to_string();
-               },
-    }
-
-    let mut _data = format!( "{}\r\n\r\n{}", &self.get_head() , &self.body );
-
-  	println!(" este ? o data {}", &_data );
-  	  	
-  	format!( "{}", _data )
-  	
   }
   
 }
