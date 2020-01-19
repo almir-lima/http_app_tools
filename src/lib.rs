@@ -1,10 +1,6 @@
 
-<<<<<<< HEAD
 pub mod request;
 pub mod response;
-=======
-pub struct Foo{}
->>>>>>> 53171bee7b5855216c9ef6fd1e32061bbb37268f
 
 /*
 Request: POST /teste HTTP/1.0

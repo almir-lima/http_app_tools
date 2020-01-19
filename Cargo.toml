@@ -1,10 +1,6 @@
 [package]
 name = "http_app_tools"
-<<<<<<< HEAD
-version = "0.1.3"
-=======
-version = "0.1.1"
->>>>>>> 53171bee7b5855216c9ef6fd1e32061bbb37268f
+version = "0.1.0"
 authors = ["Almir Lima"]
 
 description = "Simple Rust lib to decode and encode Http Protocol"
