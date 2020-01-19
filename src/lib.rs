@@ -5,9 +5,9 @@
 //-- Decodifica a requisição HTTP 1.1, e devolve a Struct Request  --
 //-- ----------------------------------------------------------------
 
-//--------------------------------------------------------------------------------------------
-//----  Decode HTTP REQUEST and converte in Http_Request Struct
-//--------------------------------------------------------------------------------------------
+///--------------------------------------------------------------------------------------------
+///----  Decode HTTP REQUEST and converte in Http_Request Struct
+///--------------------------------------------------------------------------------------------
 
 #[derive(Debug)]
 pub struct Http_Request {
@@ -57,9 +57,9 @@ impl Http_Request {
   }
 }
 
-//--------------------------------------------------------------------------------------------
-//----  HTTP REQUEST and converte in Http_Request Struct
-//--------------------------------------------------------------------------------------------
+///--------------------------------------------------------------------------------------------
+///----  HTTP REQUEST and converte in Http_Request Struct
+///--------------------------------------------------------------------------------------------
 
 use std::collections::HashMap;
 
@@ -125,3 +125,15 @@ User-Agent: Mozilla/4.0 (compatible; Synapse)
 Content-Type: application/x-www-form-urlencoded/json
 Content-Length: 24
 */
+
+
+#[cfg(test)]
+mod tests {
+
+    use super::hello;
+
+    #[test]
+    fn test_hello() {
+        assert_eq!(hello(), "Hello, world!");
+    }
+}
