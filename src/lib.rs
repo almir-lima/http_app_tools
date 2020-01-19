@@ -1,6 +1,6 @@
 
-pub mod request as HttpRequest;
-pub mod response as HttpResponse;
+pub mod request;
+pub mod response;
 
 /*
 Request: POST /teste HTTP/1.0
