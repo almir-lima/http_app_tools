@@ -1,4 +1,5 @@
 
+pub struct foo{};
 pub mod request;
 pub mod response;
 
