@@ -1,0 +1,1 @@
+D:\Sistemas\Rust\projects\http_app_tools\target\debug\libhttp_app_tools.rlib: D:\Sistemas\Rust\projects\http_app_tools\src\lib.rs D:\Sistemas\Rust\projects\http_app_tools\src\request.rs D:\Sistemas\Rust\projects\http_app_tools\src\response.rs

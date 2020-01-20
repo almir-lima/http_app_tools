@@ -5,9 +5,9 @@
 //-- Decodifica a requisição HTTP 1.1, e devolve a Struct Request  --
 //-- ----------------------------------------------------------------
 
-//!--------------------------------------------------------------------------------------------
-//!----  Decode HTTP REQUEST and converte in Http_Request Struct
-//!--------------------------------------------------------------------------------------------
+///--------------------------------------------------------------------------------------------
+///----  Decode HTTP REQUEST and converte in Http_Request Struct
+///--------------------------------------------------------------------------------------------
 
 #[derive(Debug)]
 pub struct HttpRequest {
@@ -37,9 +37,9 @@ impl HttpRequest {
 
      let mut parts = path.split("/"); // split path of uri 
      let _ = parts.next()?;
-     let app = parts.next()?;    // Name of the Aplication
-     let res = parts.next()?;    // Resource to consume
-     let method = parts.next()?; // method require
+     let app = parts.next()?; // Aplication
+     let res = parts.next()?; // Resource
+     let method = parts.next()?; // method 
       
      let qry = query.split("&").map( str::to_string ).collect(); // create a array of query
         
