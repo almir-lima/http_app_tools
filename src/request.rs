@@ -9,6 +9,9 @@
 //!----  Decode HTTP REQUEST and converte in Http_Request Struct
 //!--------------------------------------------------------------------------------------------
 
+use std::net::{TcpStream};
+use std::io::{Read};
+
 #[derive(Debug)]
 pub struct HttpRequest {
     pub verb: String,
@@ -21,8 +24,16 @@ pub struct HttpRequest {
 
 impl HttpRequest {
   
-  pub fn new( req_http: &str ) -> Option<HttpRequest>{
-        
+  pub fn new( mut stream: TcpStream ) -> Option<HttpRequest>{
+
+     let mut buffer = [0u8; 3072 ]; // Create a vector/slice UTF8 with 3072 bytes *3MB
+
+     stream.read( &mut buffer ).unwrap(); // Read the content of request and put in variable buffer
+    
+     let req_http = String::from_utf8( buffer.to_vec() ).unwrap();  // Convert vecto UTF8 to String
+
+     let req_http = req_http.trim_matches( char::from(0) );
+             
      let mut e_data = req_http.split("\r\n\r\n"); // Split Data and Head of Http request
      let head = e_data.next()?;
      let data = e_data.next()?;
